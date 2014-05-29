@@ -1,4 +1,4 @@
-$(call inherit-product, device/htc/m7ul/full_m7ul.mk)
+$(call inherit-product, device/htc/t6spr/full_t6spr.mk)
 
 $(call inherit-product, vendor/cm/config/gsm.mk)
 
@@ -6,7 +6,7 @@ $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
 
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=m7 BUILD_ID=JWR66V.H10 BUILD_FINGERPRINT="htc/m7_google/m7:4.3/JWR66V.H10/230993:user/release-keys" PRIVATE_BUILD_DESC="3.06.1700.10 CL230993 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=sprint_wwe BUILD_ID=KOT49H BUILD_FINGERPRINT="htc/sprint_wwe/t6whl:4.4.2/KOT49H/335898.5:user/release-keys" PRIVATE_BUILD_DESC="3.02.651.5 CL335898 release-keys"
 
-PRODUCT_NAME := cm_m7ul
-PRODUCT_DEVICE := m7ul
+PRODUCT_NAME := cm_t6spr
+PRODUCT_DEVICE := t6spr

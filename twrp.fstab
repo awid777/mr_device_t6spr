@@ -27,10 +27,10 @@
 
 # mount point	fstype		device			[device2]
 
-/boot		emmc		/dev/block/mmcblk0p33
-/cache		ext4		/dev/block/mmcblk0p36
-/data		ext4		/dev/block/mmcblk0p37
-/recovery	emmc		/dev/block/mmcblk0p34
-/system		ext4		/dev/block/mmcblk0p35
+/boot		emmc		/dev/block/mmcblk0p37
+/cache		ext4		/dev/block/mmcblk0p41
+/data		ext4		/dev/block/mmcblk0p42
+/recovery	emmc		/dev/block/mmcblk0p38
+/system		ext4		/dev/block/mmcblk0p39
 # USB OTG DRIVE
 /external_sd  	vfat		/dev/block/sda1

@@ -1,5 +1,8 @@
+import /init.recovery.${ro.hardware}.rc
+
 on early-init
     start ueventd
+    start healthd
 
 on init
     export PATH /sbin
@@ -8,10 +11,8 @@ on init
     export ANDROID_DATA /data
     export EXTERNAL_STORAGE /sdcard
 
-    symlink /system/etc /etc
-    chmod 0755 /sbin/busybox
-
-    mkdir /sdcard
+    mkdir /boot
+    mkdir /recovery
     mkdir /system
     mkdir /data
     mkdir /cache
@@ -37,28 +38,30 @@ on boot
 
     class_start default
 
-service choice_fn /sbin/choice_fn
-    oneshot
+on property:sys.powerctl=*
+   powerctl ${sys.powerctl}
+
+on property:sys.storage.ums_enabled=1
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/functions adb,mass_storage
+    write /sys/class/android_usb/android0/enable 1
+
+on property:sys.storage.ums_enabled=0
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/functions adb
+    write /sys/class/android_usb/android0/enable ${service.adb.root}
 
 service ueventd /sbin/ueventd
     critical
 
+service healthd /sbin/healthd -n
+    critical
+
 service recovery /sbin/recovery
-    disabled
 
 service adbd /sbin/adbd recovery
     disabled
-
-service detect_key /sbin/detect_key
-    disabled
-    oneshot
-
-service offmode_charging /sbin/offmode_charging
-    disabled
-
-service power_test /sbin/power_test
-    disabled
-    oneshot
+    socket adbd stream 660 system system
 
 # Always start adbd on userdebug and eng builds
 on property:ro.debuggable=1

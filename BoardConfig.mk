@@ -73,13 +73,13 @@ BOARD_PROVIDES_LIBRIL := true
 # inherit from the proprietary version
 -include vendor/htc/t6-common/BoardConfigVendor.mk
 
-# Custom recovery
-TARGET_PREBUILT_KERNEL := device/htc/t6/kernel
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+# Custom Recovery
+TARGET_RECOVERY_FSTAB := device/htc/t6-common/rootdir/etc/fstab.qcom
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-TARGET_RECOVERY_INITRC := device/htc/t6spr/init.rc
 BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_RECOVERY_SWIPE := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_USERIMAGES_USE_EXT4 := true
 
 # TWRP
 DEVICE_RESOLUTION := 1080x1920
@@ -96,9 +96,9 @@ HAVE_SELINUX := true
 #MultiROM config. MultiROM also uses parts of TWRP config
 MR_INPUT_TYPE := type_b
 MR_INIT_DEVICES := device/htc/t6spr/mr_init_devices.c
-MR_DPI := xxhdpi
-MR_FSTAB := device/htc/t6spr/twrp.fstab
-MR_USE_MROM_FSTAB := true
+MR_DPI := xhdpi
+#MR_FSTAB := device/htc/t6-common/rootdir/etc/fstab.qcom
+#MR_USE_MROM_FSTAB := true
 MR_DEVICE_HOOKS := device/htc/t6spr/mr_hooks.c
 MR_DEVICE_HOOKS_VER := 1
 MR_KEXEC_MEM_MIN := 0x85000000
